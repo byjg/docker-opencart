@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - "7.1"
+
+services:
+  - docker
+
+before_install:
+  - docker login --username $DOCKER_USER --password $DOCKER_PASSWORD $DOCKER_REGISTRY
+
+script:
+  - export OPENCART_VERSION=3.0.2.0
+  - docker build -t byjg/opencart:$OPENCART_VERSION .
+  - docker tag byjg/opencart:$OPENCART_VERSION byjg/opencart:latest
+  - docker push byjg/opencart:$OPENCART
+  - docker push byjg/opencart:latest
+

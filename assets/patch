@@ -1,0 +1,43 @@
+diff --git a/admin/controller/common/security.php b/admin/controller/common/security.php
+index 07cfb9f..8284581 100644
+--- a/admin/controller/common/security.php
++++ b/admin/controller/common/security.php
+@@ -11,18 +11,8 @@ class ControllerCommonSecurity extends Controller {
+ 		
+ 		$path = '';
+ 		
+-		$data['paths'] = array();
+-		
+-		$parts = explode('/', str_replace('\\', '/', rtrim(DIR_SYSTEM, '/')));	
+-		
+-		foreach ($parts as $part) {
+-			$path .= $part . '/';
+-			
+-			$data['paths'][] = $path;
+-		}
+-		
+-		rsort($data['paths']);	
+-			
++		$data['paths'] = array("/data/");
++
+ 		$data['document_root'] = str_replace('\\', '/', realpath($this->request->server['DOCUMENT_ROOT'] . '/../') . '/');
+ 
+ 		return $this->load->view('common/security', $data);
+@@ -52,7 +42,7 @@ class ControllerCommonSecurity extends Controller {
+ 				$data['error'] = $this->language->get('error_path');		
+ 			}
+ 			
+-			if (!$path || str_replace('\\', '/', realpath($path)) . '/' != str_replace('\\', '/', substr(DIR_SYSTEM, 0, strlen($path)))) {
++			if (!$path) {
+ 				$json['error'] = $this->language->get('error_path');
+ 			}
+ 					
+@@ -96,7 +86,7 @@ class ControllerCommonSecurity extends Controller {
+ 	
+ 				// Copy the 
+ 				foreach ($files as $file) {
+-					$destination = $path . $directory . substr($file, strlen(DIR_SYSTEM . 'storage/'));
++					$destination = $path . $directory . "/" . substr($file, strlen(DIR_SYSTEM . 'storage/'));
+ 					
+ 					if (is_dir($file) && !is_dir($destination)) {
+ 						mkdir($destination, 0777);
