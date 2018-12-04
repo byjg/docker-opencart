@@ -13,6 +13,6 @@ script:
   - export OPENCART_VERSION=3.0.2.0
   - docker build -t byjg/opencart:$OPENCART_VERSION .
   - docker tag byjg/opencart:$OPENCART_VERSION byjg/opencart:latest
-  - docker push byjg/opencart:$OPENCART
+  - docker push byjg/opencart:$OPENCART_VERSION
   - docker push byjg/opencart:latest
 
