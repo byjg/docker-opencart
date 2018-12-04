@@ -2,12 +2,12 @@
 
 The opencart is not prepared to create external volumes. This image can do it for you!
 
-# Running for the first time:
+# Preparing Volume
 
 Create a local directory to store your opencart data:
 
 ```bash
-# Prepare the directory
+# Prepare the volume directory
 mkdir ~/opencart
 touch ~/opencart/config.php
 touch ~/opencart/admin-config.php
@@ -17,7 +17,9 @@ sudo chown 65534:65534 -R ~/opencart
 docker network create oc
 ```
 
-After that you can create a MySQL container and the Opencart Container:
+# Running Opencart
+
+After you setup the volume you can create the MySQL and the Opencart instance:
 
 ```bash
 # Create a container mysql.
@@ -50,5 +52,5 @@ choose "Automatically Move" to the directory "/data/" as you can see below:
 
 OK. 
 
-Now you can stop your container and you don't lose your images. 
+Now you won't lose your data saved in the opencart even if you stop and remove the containers. 
 
