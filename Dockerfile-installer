@@ -23,7 +23,6 @@ RUN set -xe \
     && mv admin/config-dist.php ${OPENCART_DATA}/admin-config.php \
     && ln -s ${OPENCART_DATA}/admin-config.php admin/config.php \
     && rm ${OPENCART_FILE} \
-    && rm -rf install \
     && chown -R nobody:nobody /var/www \
     && chown -R nobody:nobody ${OPENCART_DATA}
 

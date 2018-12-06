@@ -1,6 +1,18 @@
 # Opencart Docker Image
 
-The opencart is not prepared to create external volumes. This image can do it for you!
+[![Opensource ByJG](https://img.shields.io/badge/opensource-byjg.com-brightgreen.svg)](http://opensource.byjg.com)
+[![Build Status](https://travis-ci.org/byjg/docker-opencart.svg?branch=master)](https://travis-ci.org/byjg/docker-opencart)
+
+Opencart docker image prepared for production environment with volume persistent
+
+Features:
+- Persist volume with images and setup;
+- Two images - one for install and other for running in production
+
+# Tags
+
+- Run Production Environment: byjg/opencart:3.0.2.0, byjg/opencart:lastest
+- Run Installer (First time): byjg/opencart:3.0.2.0-installer
 
 # Preparing Volume
 
@@ -36,11 +48,11 @@ docker run -d --rm --name opencart \
     --network oc \
     -p 80:80 \
     -v ~/opencart:/data \
-    byjg/opencart:3.0.2.0
+    byjg/opencart:3.0.2.0-installer
 ```
 
 The first time you'll be in the installation process. The database name should be `mysql.oc`. Just to understand, 
-the mysql is the name of the container and oc is the network. 
+the `mysql` is the name of the container and `oc` is the network. 
 
 ![Install](install_01.jpg)
 
@@ -53,4 +65,11 @@ choose "Automatically Move" to the directory "/data/" as you can see below:
 OK. 
 
 Now you won't lose your data saved in the opencart even if you stop and remove the containers. 
+
+# Running in Production
+
+Once you finish the setup and your store is running successfully you can stop the opencart and start a new container
+from `byjg/opencart:3.0.2.0` with the same parameters above.
+
+This container does not have the install folder, so you can just 
 
