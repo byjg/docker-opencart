@@ -10,20 +10,24 @@ ENV OPENCART_DATA /data
 
 COPY assets/default.conf /etc/nginx/conf.d
 COPY assets/patch /tmp/patch
+COPY assets/cmd.sh /cmd.sh
 
 RUN set -xe \
-    && apk add --no-cache wget tar \
+    && apk add --no-cache wget tar rsync \
     && wget ${OPENCART_URL} -O ${OPENCART_FILE} \
     && echo "${OPENCART_MD5}  ${OPENCART_FILE}" | md5sum -c \
     && tar xzf ${OPENCART_FILE} --strip 2 --wildcards '*/upload/' \
     && patch -p1 < /tmp/patch \
     && mkdir ${OPENCART_DATA}/ \
-    && mv config-dist.php ${OPENCART_DATA}/config.php \
+    && touch ${OPENCART_DATA}/config.php \
     && ln -s ${OPENCART_DATA}/config.php config.php \
-    && mv admin/config-dist.php ${OPENCART_DATA}/admin-config.php \
+    && touch ${OPENCART_DATA}/admin-config.php \
     && ln -s ${OPENCART_DATA}/admin-config.php admin/config.php \
-    && rm ${OPENCART_FILE} \
     && rm -rf install \
+    && rm ${OPENCART_FILE} \
     && chown -R nobody:nobody /var/www \
-    && chown -R nobody:nobody ${OPENCART_DATA}
+    && chown -R nobody:nobody ${OPENCART_DATA} \
+    && mkdir /opt \
+    && mv image/ /opt/image
 
+CMD [ "/cmd.sh" ]

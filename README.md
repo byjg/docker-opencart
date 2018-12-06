@@ -14,17 +14,11 @@ Features:
 - Run Production Environment: byjg/opencart:3.0.2.0, byjg/opencart:lastest
 - Run Installer (First time): byjg/opencart:3.0.2.0-installer
 
-# Preparing Volume
+# Preparing Network
 
 Create a local directory to store your opencart data:
 
 ```bash
-# Prepare the volume directory
-mkdir ~/opencart
-touch ~/opencart/config.php
-touch ~/opencart/admin-config.php
-sudo chown 65534:65534 -R ~/opencart
-
 # Create a network
 docker network create oc
 ```
@@ -40,14 +34,15 @@ After you setup the volume you can create the MySQL and the Opencart instance:
 docker run -d --rm --name mysql \
      --network oc \
      -e MYSQL_ROOT_PASSWORD=password \
-     -v ~/mysql-opencart:/var/lib/mysql \
+     -v $PWD/opencart/mysql:/var/lib/mysql \
      mysql:5.7
 
 # Run the Opencart
 docker run -d --rm --name opencart \
     --network oc \
     -p 80:80 \
-    -v ~/opencart:/data \
+    -v $PWD/opencart/storage:/data \
+    -v $PWD/opencart/image:/var/www/html/image \
     byjg/opencart:3.0.2.0-installer
 ```
 
@@ -68,8 +63,7 @@ Now you won't lose your data saved in the opencart even if you stop and remove t
 
 # Running in Production
 
-Once you finish the setup and your store is running successfully you can stop the opencart and start a new container
-from `byjg/opencart:3.0.2.0` with the same parameters above.
+Once you finish the setup and your store is running successfully you can stop the opencart container and start a new container
+from image `byjg/opencart:3.0.2.0` with the same parameters used above.
 
-This container does not have the install folder, so you can just 
 

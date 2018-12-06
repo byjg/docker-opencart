@@ -11,10 +11,10 @@ before_install:
 
 script:
   - export OPENCART_VERSION=3.0.2.0
-  - docker build -t byjg/opencart:$OPENCART_VERSION .
-  - docker build -t byjg/opencart:$OPENCART_VERSION-installer -f Dockerfile-installer .
-  - docker tag byjg/opencart:$OPENCART_VERSION byjg/opencart:latest
-  - docker push byjg/opencart:$OPENCART_VERSION
-  - docker push byjg/opencart:$OPENCART_VERSION-installer
+  - docker build -t byjg/opencart:${OPENCART_VERSION} .
+  - docker build -t byjg/opencart:${OPENCART_VERSION}-installer -f Dockerfile-installer .
+  - docker tag byjg/opencart:${OPENCART_VERSION} byjg/opencart:latest
+  - docker push byjg/opencart:${OPENCART_VERSION}
+  - docker push byjg/opencart:${OPENCART_VERSION}-installer
   - docker push byjg/opencart:latest
 
