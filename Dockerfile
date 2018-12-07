@@ -28,6 +28,20 @@ RUN set -xe \
     && chown -R nobody:nobody /var/www \
     && chown -R nobody:nobody ${OPENCART_DATA} \
     && mkdir /opt \
-    && mv image/ /opt/image
+    && mv admin/controller/extension     /opt/admin_controller_extension \
+    && mv admin/language                 /opt/admin_language \
+    && mv admin/model/extension          /opt/admin_model_extension \
+    && mv admin/view/image               /opt/admin_view_image \
+    && mv admin/view/javascript          /opt/admin_view_javascript \
+    && mv admin/view/stylesheet          /opt/admin_view_stylesheet \
+    && mv admin/view/template/extension  /opt/admin_view_template_extension \
+    && mv catalog/controller/extension   /opt/catalog_controller_extension \
+    && mv catalog/language               /opt/catalog_language \
+    && mv catalog/model/extension        /opt/catalog_model_extension \
+    && mv catalog/view/javascript        /opt/catalog_view_javascript \
+    && mv catalog/view/theme             /opt/catalog_view_theme \
+    && mv system/config                  /opt/system_config \
+    && mv system/library                 /opt/system_library \
+    && mv image/catalog                  /opt/image_catalog
 
 CMD [ "/cmd.sh" ]

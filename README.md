@@ -42,7 +42,21 @@ docker run -d --rm --name opencart \
     --network oc \
     -p 80:80 \
     -v $PWD/opencart/storage:/data \
-    -v $PWD/opencart/image:/var/www/html/image \
+    -v $PWD/opencart/admin_controller_extension:/var/www/html/admin/controller/extension \
+    -v $PWD/opencart/admin_language:/var/www/html/admin/language \
+    -v $PWD/opencart/admin_model_extension:/var/www/html/admin/model/extension \
+    -v $PWD/opencart/admin_view_image:/var/www/html/admin/view/image \
+    -v $PWD/opencart/admin_view_javascript:/var/www/html/admin/view/javascript \
+    -v $PWD/opencart/admin_view_stylesheet:/var/www/html/admin/view/stylesheet \
+    -v $PWD/opencart/admin_view_template_extension:/var/www/html/admin/view/template/extension \
+    -v $PWD/opencart/catalog_controller_extension:/var/www/html/catalog/controller/extension \
+    -v $PWD/opencart/catalog_language:/var/www/html/catalog/language \
+    -v $PWD/opencart/catalog_model_extension:/var/www/html/catalog/model/extension \
+    -v $PWD/opencart/catalog_view_javascript:/var/www/html/catalog/view/javascript \
+    -v $PWD/opencart/catalog_view_theme:/var/www/html/catalog/view/theme \
+    -v $PWD/opencart/system_config:/var/www/html/system/config \
+    -v $PWD/opencart/system_library:/var/www/html/system/library \
+    -v $PWD/opencart/image_catalog:/var/www/html/image/catalog\
     byjg/opencart:3.0.2.0-installer
 ```
 
