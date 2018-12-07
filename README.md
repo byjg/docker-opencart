@@ -56,7 +56,7 @@ docker run -d --rm --name opencart \
     -v $PWD/opencart/catalog_view_theme:/var/www/html/catalog/view/theme \
     -v $PWD/opencart/system_config:/var/www/html/system/config \
     -v $PWD/opencart/system_library:/var/www/html/system/library \
-    -v $PWD/opencart/image_catalog:/var/www/html/image/catalog\
+    -v $PWD/opencart/image_catalog:/var/www/html/image/catalog \
     byjg/opencart:3.0.2.0-installer
 ```
 
