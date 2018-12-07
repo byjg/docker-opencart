@@ -17,7 +17,7 @@ RUN set -xe \
     && wget ${OPENCART_URL} -O ${OPENCART_FILE} \
     && echo "${OPENCART_MD5}  ${OPENCART_FILE}" | md5sum -c \
     && tar xzf ${OPENCART_FILE} --strip 2 --wildcards '*/upload/' \
-    && patch -p1 < /tmp/patch \
+    && patch -p2 < /tmp/patch \
     && mkdir ${OPENCART_DATA}/ \
     && touch ${OPENCART_DATA}/config.php \
     && ln -s ${OPENCART_DATA}/config.php config.php \
