@@ -104,6 +104,19 @@ index f094fc130..d58fafce3 100644
  
  							if ($files) {
  								foreach ($files as $file) {
+diff --git a/upload/catalog/controller/api/login.php b/upload/catalog/controller/api/login.php
+index 0c113a1c2..cef7f9bc1 100644
+--- a/upload/catalog/controller/api/login.php
++++ b/upload/catalog/controller/api/login.php
+@@ -27,7 +27,7 @@ class ControllerApiLogin extends Controller {
+ 			if (!$json) {
+ 				$json['success'] = $this->language->get('text_success');
+ 				
+-				$session = new Session($config->get('session_engine'), $registry);
++				$session = new Session($this->config->get('session_engine'), $this->registry);
+ 				$session->start();
+ 				
+ 				$this->model_account_api->addApiSession($api_info['api_id'], $session->getId(), $this->request->server['REMOTE_ADDR']);
 diff --git a/upload/catalog/model/account/api.php b/upload/catalog/model/account/api.php
 index 8cce5cfe1..72047f970 100644
 --- a/upload/catalog/model/account/api.php
