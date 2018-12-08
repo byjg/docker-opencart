@@ -104,6 +104,19 @@ index f094fc130..d58fafce3 100644
  
  							if ($files) {
  								foreach ($files as $file) {
+diff --git a/upload/catalog/model/account/api.php b/upload/catalog/model/account/api.php
+index 8cce5cfe1..72047f970 100644
+--- a/upload/catalog/model/account/api.php
++++ b/upload/catalog/model/account/api.php
+@@ -1,7 +1,7 @@
+ <?php
+ class ModelAccountApi extends Model {
+ 	public function login($username, $key) {
+-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "api` WHERE `username` = '" . $this->db->escape($username) . "' `key` = '" . $this->db->escape($key) . "' AND status = '1'");
++		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "api` WHERE `username` = '" . $this->db->escape($username) . "' AND `key` = '" . $this->db->escape($key) . "' AND status = '1'");
+ 
+ 		return $query->row;
+ 	}
 diff --git a/upload/install/model/upgrade/1001.php b/upload/install/model/upgrade/1001.php
 index 89c651804..1efb24fb9 100644
 --- a/upload/install/model/upgrade/1001.php
